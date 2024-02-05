@@ -25,7 +25,7 @@ namespace SocialMediaHub.Controllers
         }
 
         // GET: /api/users/:id 
-        [HttpGet("/{userId}")]
+        [HttpGet("{userId}")]
         public async Task<IActionResult> GetUserAsync(int userId)
         {
             var user = await _userRepository.GetUser(userId);
@@ -41,24 +41,38 @@ namespace SocialMediaHub.Controllers
         public async Task<IActionResult> AddUserAsync([FromBody] User user)
         {
             if (user == null)
-                return BadRequest();
+                return BadRequest("Invalid user data");
 
-            await _userRepository.AddUser(user);
+            try
+            {
+                await _userRepository.AddUser(user);
 
-            return CreatedAtAction(nameof(GetUserAsync), new { userId = user.Id }, user);
+                return CreatedAtAction("GetUser", new { userId = user.Id }, user);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
         }
 
         // DELETE: /api/users/:id
         [HttpDelete("{userId}")]
         public async Task<IActionResult> RemoveUserAsync(int userId)
         {
-            var user = await _userRepository.GetUser(userId);
-            if (user == null)
-                return NotFound();
+            try
+            {
+                var user = await _userRepository.GetUser(userId);
 
-            await _userRepository.RemoveUser(userId);
+                if (user == null)
+                    return NotFound();
 
-            return NoContent();
+                await _userRepository.RemoveUser(userId);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SocialMediaHub.Models
 {
@@ -15,9 +16,8 @@ namespace SocialMediaHub.Models
         public DateTime Birthday { get; set; }
         [MaxLength(20)]
         public string Location { get; set; }
-        [MaxLength(9)]
         public int PhoneNumber { get; set; }
-        public int? GroupId { get; set; }
-        public Group Group { get; set; }
+        [ForeignKey("Group")]
+        public int GroupId { get; set; }
     }
 }

@@ -12,7 +12,7 @@ using SocialMediaHub.Database;
 namespace SocialMediaHub.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240205133717_GroupAndUserMigration")]
+    [Migration("20240205154601_GroupAndUserMigration")]
     partial class GroupAndUserMigration
     {
         /// <inheritdoc />
@@ -34,7 +34,6 @@ namespace SocialMediaHub.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Limit")
-                        .HasMaxLength(10)
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -63,7 +62,7 @@ namespace SocialMediaHub.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
-                    b.Property<int?>("GroupId")
+                    b.Property<int>("GroupId")
                         .HasColumnType("int");
 
                     b.Property<string>("Location")
@@ -77,7 +76,6 @@ namespace SocialMediaHub.Migrations
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<int>("PhoneNumber")
-                        .HasMaxLength(9)
                         .HasColumnType("int");
 
                     b.Property<string>("Surname")
@@ -87,23 +85,7 @@ namespace SocialMediaHub.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GroupId");
-
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("SocialMediaHub.Models.User", b =>
-                {
-                    b.HasOne("SocialMediaHub.Models.Group", "Group")
-                        .WithMany("Users")
-                        .HasForeignKey("GroupId");
-
-                    b.Navigation("Group");
-                });
-
-            modelBuilder.Entity("SocialMediaHub.Models.Group", b =>
-                {
-                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }
