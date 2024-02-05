@@ -1,4 +1,6 @@
-﻿using SocialMediaHub.Database;
+﻿using Microsoft.EntityFrameworkCore;
+using SocialMediaHub.Database;
+using SocialMediaHub.Models;
 
 namespace SocialMediaHub.Repositories
 {
@@ -11,6 +13,16 @@ namespace SocialMediaHub.Repositories
             _context = context;
         }
 
+        public async Task<IQueryable<Group>> GetAllGroups()
+            => await Task.FromResult(_context.Groups.OrderBy(g => g.Id));
 
+        public async Task<Group> GetGroup(int groupId)
+            => await _context.Groups.FirstOrDefaultAsync(g => g.Id == groupId);
+
+        public async Task AddGroup(Group group)
+        {
+            _context.Groups.Add(group);
+            await _context.SaveChangesAsync();
+        }
     }
 }
