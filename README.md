@@ -1,6 +1,8 @@
 # SocialMediaHub
 
-The project is a REST controller for a social networking platform. It enables users of the social media platform to work effectively with data. All repository methods have been tested in the project by xUnit. Technologies used in the project:
+The project is a REST controller for a social networking platform. It enables users of the social media platform to work effectively with data. All repository methods have been tested in the project by xUnit. 
+
+Technologies used in the project:
 - Framework: **ASP.NET Core Web API**
   - REST API
 - Backend: **C#**
