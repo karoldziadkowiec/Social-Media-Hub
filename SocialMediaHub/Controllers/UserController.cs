@@ -62,7 +62,7 @@ namespace SocialMediaHub.Controllers
 
         // PUT: /api/users/:id
         [HttpPut("{userId}")]
-        public async Task<IActionResult> UpdateUser(int userId, [FromBody] User user)
+        public async Task<IActionResult> UpdateUserAsync(int userId, [FromBody] User user)
         {
             try
             {
@@ -112,7 +112,7 @@ namespace SocialMediaHub.Controllers
 
         // GET: /api/users/csv
         [HttpGet("csv")]
-        public async Task<IActionResult> GetUsersCsv()
+        public async Task<IActionResult> GetUsersCsvAsync()
         {
             try
             {
@@ -138,7 +138,7 @@ namespace SocialMediaHub.Controllers
 
         // GET: /api/users/locaction/:location
         [HttpGet("location/{location}")]
-        public async Task<IActionResult> GetUsersByLocation(string location)
+        public async Task<IActionResult> GetUsersByLocationAsync(string location)
         {
             var users = await _userRepository.GetUsersByLocation(location);
             return Ok(users);
@@ -146,7 +146,7 @@ namespace SocialMediaHub.Controllers
 
         // GET: /api/users/gender/:gender
         [HttpGet("gender/{gender}")]
-        public async Task<IActionResult> GetUsersByGender(string gender)
+        public async Task<IActionResult> GetUsersByGenderAsync(string gender)
         {
             var users = await _userRepository.GetUsersByGender(gender);
             return Ok(users);
@@ -154,7 +154,7 @@ namespace SocialMediaHub.Controllers
 
         // GET: /api/users/oldest
         [HttpGet("oldest")]
-        public async Task<IActionResult> GetOldestUser()
+        public async Task<IActionResult> GetOldestUserAsync()
         {
             var oldestUser = await _userRepository.GetOldestUser();
             return Ok(oldestUser);
@@ -162,7 +162,7 @@ namespace SocialMediaHub.Controllers
 
         // GET: /api/users/youngest
         [HttpGet("youngest")]
-        public async Task<IActionResult> GetYoungestUser()
+        public async Task<IActionResult> GetYoungestUserAsync()
         {
             var youngestUser = await _userRepository.GetYoungestUser();
             return Ok(youngestUser);
@@ -170,7 +170,7 @@ namespace SocialMediaHub.Controllers
 
         // GET: /api/users/search/:searchTerm
         [HttpGet("search/{searchTerm}")]
-        public async Task<IActionResult> SearchUsers(string searchTerm)
+        public async Task<IActionResult> SearchUsersAsync(string searchTerm)
         {
             var searchedUsers = await _userRepository.SearchUsers(searchTerm);
             return Ok(searchedUsers);
@@ -178,9 +178,9 @@ namespace SocialMediaHub.Controllers
 
         // GET: /api/users/partial/:searchTerm
         [HttpGet("partial/{searchTerm}")]
-        public async Task<IActionResult> SearchPartialUsers(string searchTerm)
+        public async Task<IActionResult> SearchPartialUsersAsync(string searchTerm)
         {
-            var searchedUsers = await _userRepository.SearchPartialUsers(searchTerm);
+            var searchedUsers = await _userRepository.SearchPartial(searchTerm);
             return Ok(searchedUsers);
         }
     }

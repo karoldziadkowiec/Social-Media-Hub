@@ -15,6 +15,6 @@ namespace SocialMediaHub.Repositories
         Task<User> GetOldestUser();
         Task<User> GetYoungestUser();
         Task<IEnumerable<User>> SearchUsers(string searchTerm);
-        Task<IEnumerable<User>> SearchPartialUsers(string searchTerm);
+        Task<IEnumerable<User>> SearchPartial(string searchTerm);
     }
 }

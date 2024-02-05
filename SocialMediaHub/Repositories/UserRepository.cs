@@ -62,7 +62,7 @@ namespace SocialMediaHub.Repositories
 
             foreach (var user in _context.Users)
             {
-                csvBuilder.AppendLine($"{user.Id}, {user.Name}, {user.Surname}, {user.Gender}, {user.Birthday}, {user.Location}, {user.PhoneNumber}");
+                csvBuilder.AppendLine($"{user.Id}, {user.Name}, {user.Surname}, {user.Gender}, {user.Birthday},{user.Location},{user.PhoneNumber}");
             }
 
             return await _context.Users.ToListAsync();
@@ -91,7 +91,7 @@ namespace SocialMediaHub.Repositories
         public async Task<IEnumerable<User>> SearchUsers(string searchTerm)
             => await Task.FromResult(_context.Users.Where(u => u.Name == searchTerm || u.Surname == searchTerm));
 
-        public async Task<IEnumerable<User>> SearchPartialUsers(string searchTerm)
+        public async Task<IEnumerable<User>> SearchPartial(string searchTerm)
         {
             var searchedUsers = await _context.Users
                 .Where(u => u.Name.Contains(searchTerm) || u.Surname.Contains(searchTerm))
