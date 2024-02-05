@@ -1,7 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using CsvHelper;
+using CsvHelper.Configuration;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaHub.Models;
 using SocialMediaHub.Repositories;
+using System.Formats.Asn1;
+using System.Globalization;
+using System.Text;
 
 namespace SocialMediaHub.Controllers
 {
@@ -55,6 +60,36 @@ namespace SocialMediaHub.Controllers
             }
         }
 
+        // PUT: /api/users/:id
+        [HttpPut("{userId}")]
+        public async Task<IActionResult> UpdateUser(int userId, [FromBody] User user)
+        {
+            try
+            {
+                if (user == null)
+                    return BadRequest("Invalid user data");
+
+                var existingUser = await _userRepository.GetUser(userId);
+
+                if (existingUser == null)
+                    return NotFound();
+
+                existingUser.Name = user.Name;
+                existingUser.Surname = user.Surname;
+                existingUser.Gender = user.Gender;
+                existingUser.Birthday = user.Birthday;
+                existingUser.Location = user.Location;
+                existingUser.PhoneNumber = user.PhoneNumber;
+
+                await _userRepository.UpdateUser(existingUser);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
         // DELETE: /api/users/:id
         [HttpDelete("{userId}")]
         public async Task<IActionResult> RemoveUserAsync(int userId)
@@ -73,6 +108,80 @@ namespace SocialMediaHub.Controllers
             {
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
+        }
+
+        // GET: /api/users/csv
+        [HttpGet("csv")]
+        public async Task<IActionResult> GetUsersCsv()
+        {
+            try
+            {
+                var usersInCsv = await _userRepository.GetUsersInCsvFormat();
+
+                using (var memoryStream = new MemoryStream())
+                using (var writer = new StreamWriter(memoryStream, Encoding.UTF8))
+                using (var csv = new CsvWriter(writer, new CsvConfiguration(CultureInfo.InvariantCulture)))
+                {
+                    csv.WriteRecords(usersInCsv);
+
+                    writer.Flush();
+                    memoryStream.Position = 0;
+
+                    return File(memoryStream.ToArray(), "text/csv", "users.csv");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+        // GET: /api/users/locaction/:location
+        [HttpGet("location/{location}")]
+        public async Task<IActionResult> GetUsersByLocation(string location)
+        {
+            var users = await _userRepository.GetUsersByLocation(location);
+            return Ok(users);
+        }
+
+        // GET: /api/users/gender/:gender
+        [HttpGet("gender/{gender}")]
+        public async Task<IActionResult> GetUsersByGender(string gender)
+        {
+            var users = await _userRepository.GetUsersByGender(gender);
+            return Ok(users);
+        }
+
+        // GET: /api/users/oldest
+        [HttpGet("oldest")]
+        public async Task<IActionResult> GetOldestUser()
+        {
+            var oldestUser = await _userRepository.GetOldestUser();
+            return Ok(oldestUser);
+        }
+
+        // GET: /api/users/youngest
+        [HttpGet("youngest")]
+        public async Task<IActionResult> GetYoungestUser()
+        {
+            var youngestUser = await _userRepository.GetYoungestUser();
+            return Ok(youngestUser);
+        }
+
+        // GET: /api/users/search/:searchTerm
+        [HttpGet("search/{searchTerm}")]
+        public async Task<IActionResult> SearchUsers(string searchTerm)
+        {
+            var searchedUsers = await _userRepository.SearchUsers(searchTerm);
+            return Ok(searchedUsers);
+        }
+
+        // GET: /api/users/partial/:searchTerm
+        [HttpGet("partial/{searchTerm}")]
+        public async Task<IActionResult> SearchPartialUsers(string searchTerm)
+        {
+            var searchedUsers = await _userRepository.SearchPartialUsers(searchTerm);
+            return Ok(searchedUsers);
         }
     }
 }
