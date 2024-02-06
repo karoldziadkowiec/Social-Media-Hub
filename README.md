@@ -63,7 +63,7 @@ Example endpoints tested by Swagger UI:
 
 ![16](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/16.png)
 
-- GET: /api/groups/:id/fill -> calculating entered group filling
+- GET: /api/groups/:id/fill -> calculating group filling in %
 
 ![17](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/17.png)
 
