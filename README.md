@@ -76,5 +76,6 @@ Example endpoints tested by Swagger UI:
 ![19](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/19.png)
 
 - POST: /api/posts/:postId/likes
+- 
 ![20](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/20.png)
 
