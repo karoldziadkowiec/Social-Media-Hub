@@ -19,6 +19,9 @@ namespace SocialMediaHub
                 options.UseSqlServer(builder.Configuration.GetConnectionString("connection")));
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<IGroupRepository, GroupRepository>();
+            builder.Services.AddScoped<IEventRepository, EventRepository>();
+            builder.Services.AddScoped<IPostRepository, PostRepository>();
+
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

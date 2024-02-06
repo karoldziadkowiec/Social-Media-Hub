@@ -9,5 +9,7 @@ namespace SocialMediaHub.Database
 
         public DbSet<User> Users { get; set; }
         public DbSet<Group> Groups { get; set; }
+        public DbSet<Event> Events { get; set; }
+        public DbSet<Post> Posts { get; set; }
     }
 }

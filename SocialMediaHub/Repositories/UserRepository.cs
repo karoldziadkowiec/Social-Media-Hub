@@ -113,7 +113,7 @@ namespace SocialMediaHub.Repositories
             return await _context.Users.FirstOrDefaultAsync(u => u.Birthday == youngestBirthday);
         }
 
-        public async Task<IEnumerable<User>> SearchUsers(string searchTerm)
+        public async Task<IEnumerable<User>> SearchUser(string searchTerm)
             => await Task.FromResult(_context.Users.Where(u => u.Name == searchTerm || u.Surname == searchTerm));
 
         public async Task<IEnumerable<User>> SearchPartial(string searchTerm)

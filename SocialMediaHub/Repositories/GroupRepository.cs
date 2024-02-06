@@ -57,7 +57,7 @@ namespace SocialMediaHub.Repositories
 
             using (var workbook = new XLWorkbook())
             {
-                var worksheet = workbook.Worksheets.Add("Users");
+                var worksheet = workbook.Worksheets.Add("Groups");
 
                 worksheet.Cell(1, 1).Value = "Id";
                 worksheet.Cell(1, 2).Value = "Name";

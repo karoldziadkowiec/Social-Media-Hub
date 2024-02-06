@@ -14,7 +14,7 @@ namespace SocialMediaHub.Repositories
         Task<IEnumerable<User>> GetUsersByGender(string gender);
         Task<User> GetOldestUser();
         Task<User> GetYoungestUser();
-        Task<IEnumerable<User>> SearchUsers(string searchTerm);
+        Task<IEnumerable<User>> SearchUser(string searchTerm);
         Task<IEnumerable<User>> SearchPartial(string searchTerm);
     }
 }

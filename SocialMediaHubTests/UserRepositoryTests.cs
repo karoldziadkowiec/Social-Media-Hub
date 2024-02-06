@@ -257,7 +257,7 @@ namespace SocialMediaHubTests
             context.SaveChanges();
 
             // Act
-            var result = await userRepository.SearchUsers(_string);
+            var result = await userRepository.SearchUser(_string);
 
             // Assert
             Assert.Equal(1, result.Count());

@@ -161,7 +161,7 @@ namespace SocialMediaHub.Controllers
         [HttpGet("search/{searchTerm}")]
         public async Task<IActionResult> SearchUsersAsync(string searchTerm)
         {
-            var searchedUsers = await _userRepository.SearchUsers(searchTerm);
+            var searchedUsers = await _userRepository.SearchUser(searchTerm);
             return Ok(searchedUsers);
         }
 
