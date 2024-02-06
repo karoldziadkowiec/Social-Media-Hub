@@ -103,5 +103,60 @@ namespace SocialMediaHub.Repositories
             _context.Comments.Add(comment);
             await _context.SaveChangesAsync();
         }
+
+        public async Task EditComment(Comment comment)
+        {
+            var existingComment = await _context.Comments.FindAsync(comment.Id);
+
+            if (existingComment != null)
+            {
+                existingComment.Content = comment.Content;
+                existingComment.CreationDate = DateTime.Now;
+                existingComment.UserId = comment.UserId;
+
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task RemoveComment(int postId, int commentId)
+        {
+            var comment = await _context.Comments.FirstOrDefaultAsync(c => c.Id == commentId && c.PostId == postId);
+            if (comment != null)
+            {
+                _context.Comments.Remove(comment);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task AddLikeToPost(int postId, int userId, int likeId)
+        {
+            var post = await _context.Posts.FindAsync(postId);
+            if (post == null)
+            {
+                throw new ArgumentException($"Post with ID {postId} not found.");
+            }
+
+            var like = new Like
+            {
+                Id = likeId,
+                IsLiked = true,
+                PostId = postId,
+                UserId = userId,
+                CreationDate = DateTime.Now
+            };
+
+            _context.Likes.Add(like);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task RemoveLike(int postId, int likeId)
+        {
+            var like = await _context.Likes.FindAsync(likeId);
+            if (like != null && like.PostId == postId)
+            {
+                _context.Likes.Remove(like);
+                await _context.SaveChangesAsync();
+            }
+        }
     }
 }

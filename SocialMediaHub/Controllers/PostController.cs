@@ -11,10 +11,14 @@ namespace SocialMediaHub.Controllers
     public class PostController : ControllerBase
     {
         private readonly IPostRepository _postRepository;
+        private readonly ICommentRepository _commentRepository;
+        private readonly ILikeRepository _likeRepository;
 
-        public PostController(IPostRepository postRepository)
+        public PostController(IPostRepository postRepository, ICommentRepository commentRepository, ILikeRepository likeRepository)
         {
             _postRepository = postRepository;
+            _commentRepository = commentRepository;
+            _likeRepository = likeRepository;
         }
 
         // GET: /api/posts
@@ -112,7 +116,7 @@ namespace SocialMediaHub.Controllers
         }
 
         [HttpPost("{postId}/comments")]
-        public async Task<IActionResult> AddCommentToPost(int postId, int userId, string content)
+        public async Task<IActionResult> AddCommentToPostAsync(int postId, int userId, string content)
         {
             try
             {
@@ -122,6 +126,70 @@ namespace SocialMediaHub.Controllers
             catch (ArgumentException ex)
             {
                 return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+        [HttpPut("{postId}/comments/{commentId}")]
+        public async Task<IActionResult> EditCommentAsync(int postId, int commentId, Comment comment)
+        {
+            try
+            {
+                var existingComment = await _commentRepository.GetComment(commentId);
+                if (existingComment == null || existingComment.PostId != postId)
+                    return NotFound();
+
+                await _postRepository.EditComment(comment);
+                return Ok("Comment updated successfully.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+        [HttpDelete("{postId}/comments/{commentId}")]
+        public async Task<IActionResult> RemoveCommentAsync(int postId, int commentId)
+        {
+            try
+            {
+                var existingComment = await _commentRepository.GetComment(commentId);
+                if (existingComment == null || existingComment.PostId != postId)
+                    return NotFound();
+
+                await _postRepository.RemoveComment(postId, commentId);
+                return Ok("Comment removed successfully.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+        [HttpPost("{postId}/likes")]
+        public async Task<IActionResult> AddLikeToPost(int postId, int userId, int likeId)
+        {
+            try
+            {
+                await _postRepository.AddLikeToPost(postId, userId, likeId);
+                return Ok("Like added to post successfully.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+        [HttpDelete("{postId}/likes/{likeId}")]
+        public async Task<IActionResult> RemoveLike(int postId, int likeId)
+        {
+            try
+            {
+                await _postRepository.RemoveLike(postId, likeId);
+                return Ok("Like removed from post successfully.");
             }
             catch (Exception ex)
             {

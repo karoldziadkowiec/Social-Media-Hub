@@ -5,43 +5,43 @@ using SocialMediaHub.Models;
 
 namespace SocialMediaHub.Repositories
 {
-    public class CommentRepository : ICommentRepository
+    public class LikeRepository : ILikeRepository
     {
         private readonly AppDbContext _context;
 
-        public CommentRepository(AppDbContext context)
+        public LikeRepository(AppDbContext context)
         {
             _context = context;
         }
 
-        public async Task<IQueryable<Comment>> GetAllComments()
-            => await Task.FromResult(_context.Comments.OrderBy(c => c.Id));
+        public async Task<IQueryable<Like>> GetAllLikes()
+            => await Task.FromResult(_context.Likes.OrderBy(l => l.Id));
 
-        public async Task<Comment> GetComment(int commentId)
-            => await _context.Comments.FirstOrDefaultAsync(c => c.Id == commentId);
+        public async Task<Like> GetLike(int likeId)
+            => await _context.Likes.FirstOrDefaultAsync(l => l.Id == likeId);
 
-        public async Task<byte[]> GetCommentsCsvBytes()
+        public async Task<byte[]> GetLikesCsvBytes()
         {
-            var comments = await _context.Comments.ToListAsync();
+            var likes = await _context.Likes.ToListAsync();
 
             using (var workbook = new XLWorkbook())
             {
                 var worksheet = workbook.Worksheets.Add("Posts");
 
                 worksheet.Cell(1, 1).Value = "Id";
-                worksheet.Cell(1, 2).Value = "Content";
+                worksheet.Cell(1, 2).Value = "IsLiked";
                 worksheet.Cell(1, 3).Value = "CreationDate";
                 worksheet.Cell(1, 4).Value = "UserId";
                 worksheet.Cell(1, 5).Value = "PostId";
 
                 var row = 2;
-                foreach (var comment in comments)
+                foreach (var like in likes)
                 {
-                    worksheet.Cell(row, 1).Value = comment.Id;
-                    worksheet.Cell(row, 2).Value = comment.Content;
-                    worksheet.Cell(row, 3).Value = comment.CreationDate;
-                    worksheet.Cell(row, 4).Value = comment.UserId;
-                    worksheet.Cell(row, 5).Value = comment.PostId;
+                    worksheet.Cell(row, 1).Value = like.Id;
+                    worksheet.Cell(row, 2).Value = like.IsLiked;
+                    worksheet.Cell(row, 3).Value = like.CreationDate;
+                    worksheet.Cell(row, 4).Value = like.UserId;
+                    worksheet.Cell(row, 5).Value = like.PostId;
                     row++;
                 }
 

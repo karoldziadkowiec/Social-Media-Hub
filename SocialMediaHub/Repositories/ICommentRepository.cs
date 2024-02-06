@@ -6,9 +6,6 @@ namespace SocialMediaHub.Repositories
     {
         Task<IQueryable<Comment>> GetAllComments();
         Task<Comment> GetComment(int commentId);
-        Task AddComment(Comment comment);
-        Task EditComment(Comment comment);
-        Task RemoveComment(int commentId);
         Task<byte[]> GetCommentsCsvBytes();
     }
 }
