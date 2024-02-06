@@ -33,49 +33,48 @@ Entity endpoints created:
 ![9](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/9.png)
 
 Example endpoints tested by Swagger UI:
-- POST: /api/users
+- POST: /api/users -> adding new user
 
 ![10](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/10.png)
 
-- GET: /api/users
+- GET: /api/users -> displaying users
   
 ![11](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/11.png)
 
-- GET: /api/users/csv
+- GET: /api/users/csv -> displaying users in CSV file using ClosedXML library
   
 ![11.2](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/11.2.png)
 ![11.3](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/11.3.png)
 
-- GET: /api/users/:id
+- GET: /api/users/:id -> displaying entered user
 
 ![12](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/12.png)
 
-- PUT: /api/users/:id
+- PUT: /api/users/:id -> editing entered user
 
 ![13](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/13.png)
 ![14](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/14.png)
 
-- DELETE: /api/users/:id
+- DELETE: /api/users/:id -> deleting entered user
 
 ![15](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/15.png)
 
-- POST: /api/friendships (between users: id=2 and id=3)
+- POST: /api/friendships -> adding friendship between users: id=2 and id=3
 
 ![16](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/16.png)
 
-- GET: /api/groups/:id/fill
+- GET: /api/groups/:id/fill -> calculating entered group filling
 
 ![17](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/16.png)
 
-- GET: /api/groups/search
+- GET: /api/groups/search -> searching grups by entered group name
 
 ![18](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/18.png)
 
-- POST: /api/posts/:postId/comments
+- POST: /api/posts/:postId/comments -> adding comment to the existing post
 
 ![19](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/19.png)
 
-- POST: /api/posts/:postId/likes
-- 
-![20](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/20.png)
+- POST: /api/posts/:postId/likes -> like existing post
 
+![20](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/20.png)
