@@ -17,3 +17,14 @@ Technologies used in the project:
 - API testing:
   - **Swagger UI**
   - **Postman**
+
+Entities created:
+- User
+- Group
+- Friendship
+- Event
+- Post
+- Comment
+- Like
+- Advertisement
+
