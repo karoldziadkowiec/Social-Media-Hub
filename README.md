@@ -55,7 +55,7 @@ Example endpoints tested by Swagger UI:
 ![13](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/13.png)
 ![14](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/14.png)
 
-- DELETE: /api/users/:id -> deleting entered user
+- DELETE: /api/users/:id -> removing entered user
 
 ![15](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/15.png)
 
@@ -65,7 +65,7 @@ Example endpoints tested by Swagger UI:
 
 - GET: /api/groups/:id/fill -> calculating entered group filling
 
-![17](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/16.png)
+![17](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/17.png)
 
 - GET: /api/groups/search -> searching grups by entered group name
 
