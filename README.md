@@ -17,3 +17,17 @@ Technologies used in the project:
 - API testing:
   - **Swagger UI**
   - **Postman**
+
+Entities and database tables created:
+![1](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/1.png)
+![2](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/2.png)
+
+Entity endpoints created:
+![3](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/3.png)
+![4](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/4.png)
+![5](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/5.png)
+![6](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/6.png)
+![7](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/7.png)
+![8](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/8.png)
+![9](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/9.png)
+
