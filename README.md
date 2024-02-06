@@ -19,12 +19,5 @@ Technologies used in the project:
   - **Postman**
 
 Entities created:
-- User
-- Group
-- Friendship
-- Event
-- Post
-- Comment
-- Like
-- Advertisement
+![1](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/1.png)
 
