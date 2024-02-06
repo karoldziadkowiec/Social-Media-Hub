@@ -19,6 +19,7 @@ Technologies used in the project:
   - **Postman**
 
 Entities and database tables created:
+
 ![1](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/1.png)
 ![2](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/2.png)
 
