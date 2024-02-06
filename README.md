@@ -41,6 +41,11 @@ Example endpoints tested by Swagger UI:
   
 ![11](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/11.png)
 
+- GET: /api/users/csv
+  
+![11.2](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/11.2.png)
+![11.3](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/11.3.png)
+
 - GET: /api/users/:id
 
 ![12](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/12.png)
@@ -54,7 +59,22 @@ Example endpoints tested by Swagger UI:
 
 ![15](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/15.png)
 
-- GET: /api/users
+- POST: /api/friendships (between users: id=2 and id=3)
 
 ![16](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/16.png)
+
+- GET: /api/groups/:id/fill
+
+![17](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/16.png)
+
+- GET: /api/groups/search
+
+![18](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/18.png)
+
+- POST: /api/posts/:postId/comments
+
+![19](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/19.png)
+
+- POST: /api/posts/:postId/likes
+![20](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/20.png)
 
