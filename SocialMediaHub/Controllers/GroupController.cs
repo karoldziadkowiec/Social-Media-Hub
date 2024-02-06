@@ -16,7 +16,7 @@ namespace SocialMediaHub.Controllers
     {
         private readonly IGroupRepository _groupRepository;
 
-        public GroupController(IGroupRepository groupRepository, UserRepository userRepository)
+        public GroupController(IGroupRepository groupRepository)
         {
             _groupRepository = groupRepository;
         }
@@ -101,23 +101,12 @@ namespace SocialMediaHub.Controllers
 
         // GET: /api/groups/csv
         [HttpGet("csv")]
-        public async Task<IActionResult> GetGroupsInCsvFormatAsync()
+        public async Task<IActionResult> GetGroupsToCsvAsync()
         {
             try
             {
-                var usersInCsv = await _groupRepository.GetGroupsInCsvFormat();
-
-                using (var memoryStream = new MemoryStream())
-                using (var writer = new StreamWriter(memoryStream, Encoding.UTF8))
-                using (var csv = new CsvWriter(writer, new CsvConfiguration(CultureInfo.InvariantCulture)))
-                {
-                    csv.WriteRecords(usersInCsv);
-
-                    writer.Flush();
-                    memoryStream.Position = 0;
-
-                    return File(memoryStream.ToArray(), "text/csv", "groups.csv");
-                }
+                var groupsCsvBytes = await _groupRepository.GetGroupsCsvBytes();
+                return File(groupsCsvBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "groups.xlsx");
             }
             catch (Exception ex)
             {

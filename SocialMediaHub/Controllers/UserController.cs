@@ -112,23 +112,12 @@ namespace SocialMediaHub.Controllers
 
         // GET: /api/users/csv
         [HttpGet("csv")]
-        public async Task<IActionResult> GetUsersCsvAsync()
+        public async Task<IActionResult> GetUsersToCsvAsync()
         {
             try
             {
-                var usersInCsv = await _userRepository.GetUsersInCsvFormat();
-
-                using (var memoryStream = new MemoryStream())
-                using (var writer = new StreamWriter(memoryStream, Encoding.UTF8))
-                using (var csv = new CsvWriter(writer, new CsvConfiguration(CultureInfo.InvariantCulture)))
-                {
-                    csv.WriteRecords(usersInCsv);
-
-                    writer.Flush();
-                    memoryStream.Position = 0;
-
-                    return File(memoryStream.ToArray(), "text/csv", "users.csv");
-                }
+                var usersCsvBytes = await _userRepository.GetUsersCsvBytes();
+                return File(usersCsvBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "users.xlsx");
             }
             catch (Exception ex)
             {

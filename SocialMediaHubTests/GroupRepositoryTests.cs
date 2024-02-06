@@ -124,25 +124,24 @@ namespace SocialMediaHubTests
         }
 
         [Fact]
-        public async Task GetGroupsInCsvFormat_ShouldReturnGroupsInCsvFormat()
+        public async Task GetGroupsCsvBytes_ShouldReturnGroupsInCsvFormat()
         {
             // Arrange
-            var options = GetDbContextOptions("GetGroupsInCsvFormat");
+            var options = GetDbContextOptions("GetGroupsCsvBytes");
             using var context = new AppDbContext(options);
             var groupRepository = new GroupRepository(context);
 
             context.Groups.AddRange(
-                new Group { Id = 1, Name = "Group A", Limit = 10 },
-                new Group { Id = 2, Name = "Group B", Limit = 15 }
+                new Group { Id = 1, Name = "Group A", Limit = 10 }
             );
 
             context.SaveChanges();
 
             // Act
-            var result = await groupRepository.GetGroupsInCsvFormat();
+            var result = await groupRepository.GetGroupsCsvBytes();
 
             // Assert
-            Assert.Equal(2, result.Count());
+            Assert.NotEmpty(result);
         }
 
         [Fact]

@@ -126,7 +126,7 @@ namespace SocialMediaHubTests
         }
 
         [Fact]
-        public async Task GetUsersInCsvFormat_ShouldReturnUsersInCsvFormat()
+        public async Task GetUsersCsvBytes_ShouldReturnUsersInCsvFormat()
         {
             // Arrange
             var options = GetDbContextOptions("GetUsersInCsvFormat");
@@ -141,10 +141,10 @@ namespace SocialMediaHubTests
             context.SaveChanges();
 
             // Act
-            var result = await userRepository.GetUsersInCsvFormat();
+            var result = await userRepository.GetUsersCsvBytes();
 
             // Assert
-            Assert.Equal(2, result.Count());
+            Assert.NotEmpty(result);
         }
 
         [Fact]

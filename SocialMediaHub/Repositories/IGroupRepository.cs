@@ -9,7 +9,7 @@ namespace SocialMediaHub.Repositories
         Task AddGroup(Group group);
         Task UpdateGroup(Group group);
         Task RemoveGroup(int groupId);
-        Task<IEnumerable<Group>> GetGroupsInCsvFormat();
+        Task<byte[]> GetGroupsCsvBytes();
         Task<IEnumerable<User>> GetUsersByGroupId(int groupId);
         Task<double> GetGroupFillPercentage(int groupId);
         Task<IEnumerable<Group>> GetGroupsByName();

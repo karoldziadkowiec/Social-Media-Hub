@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ClosedXML.Excel;
+using Microsoft.EntityFrameworkCore;
 using SocialMediaHub.Database;
 using SocialMediaHub.Models;
 using System.Reflection;
@@ -50,18 +51,34 @@ namespace SocialMediaHub.Repositories
             }
         }
 
-        public async Task<IEnumerable<Group>> GetGroupsInCsvFormat()
+        public async Task<byte[]> GetGroupsCsvBytes()
         {
-            var csvBuilder = new StringBuilder();
+            var groups = await _context.Groups.ToListAsync();
 
-            csvBuilder.AppendLine("Id, Name, Limit");
-
-            foreach (var group in _context.Groups)
+            using (var workbook = new XLWorkbook())
             {
-                csvBuilder.AppendLine($"{group.Id}, {group.Name}, {group.Limit}");
-            }
+                var worksheet = workbook.Worksheets.Add("Users");
 
-            return await _context.Groups.ToListAsync();
+                worksheet.Cell(1, 1).Value = "Id";
+                worksheet.Cell(1, 2).Value = "Name";
+                worksheet.Cell(1, 3).Value = "Limit";
+
+                var row = 2;
+                foreach (var group in groups)
+                {
+                    worksheet.Cell(row, 1).Value = group.Id;
+                    worksheet.Cell(row, 2).Value = group.Name;
+                    worksheet.Cell(row, 3).Value = group.Limit;
+                    row++;
+                }
+
+                using (var memoryStream = new MemoryStream())
+                {
+                    workbook.SaveAs(memoryStream);
+                    memoryStream.Position = 0;
+                    return memoryStream.ToArray();
+                }
+            }
         }
 
         public async Task<IEnumerable<User>> GetUsersByGroupId(int groupId)

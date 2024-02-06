@@ -9,7 +9,7 @@ namespace SocialMediaHub.Repositories
         Task AddUser(User user);
         Task UpdateUser(User user);
         Task RemoveUser(int userId);
-        Task<IEnumerable<User>> GetUsersInCsvFormat();
+        Task<byte[]> GetUsersCsvBytes();
         Task<IEnumerable<User>> GetUsersByLocation(string location);
         Task<IEnumerable<User>> GetUsersByGender(string gender);
         Task<User> GetOldestUser();
