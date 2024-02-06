@@ -32,3 +32,17 @@ Entity endpoints created:
 ![8](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/8.png)
 ![9](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/9.png)
 
+Example endpoints tested by Swagger UI:
+- POST: /api/users
+![10](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/10.png)
+- GET: /api/users
+![11](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/11.png)
+- GET: /api/users/:id
+![12](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/12.png)
+- PUT: /api/users/:id
+![13](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/13.png)
+![14](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/14.png)
+- DELETE: /api/users/:id
+![15](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/15.png)
+- GET: /api/users
+![16](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/16.png)
