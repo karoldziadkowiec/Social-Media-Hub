@@ -14,5 +14,6 @@ namespace SocialMediaHub.Database
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Friendship> Friendships { get; set; }
         public DbSet<Like> Likes { get; set; }
+        public DbSet<Advertisement> Advertisements { get; set; }
     }
 }
