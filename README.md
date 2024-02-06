@@ -9,6 +9,7 @@ Technologies used in the project:
   - Multithreading (async/await)
   - LINQ Queries
   - Repository pattern
+  - ClosedXML library
 - ORM: **Entity Framework Core**
   - Migrations
 - Database: **Microsoft SQL Server**
