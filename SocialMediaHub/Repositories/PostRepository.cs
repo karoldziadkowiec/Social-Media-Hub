@@ -17,6 +17,7 @@ namespace SocialMediaHub.Repositories
 
         public async Task<IQueryable<Post>> GetAllPosts()
             => await Task.FromResult(_context.Posts.OrderBy(p => p.Id));
+
         public async Task<Post> GetPost(int postId)
             => await _context.Posts.FirstOrDefaultAsync(p => p.Id == postId);
 
@@ -81,6 +82,26 @@ namespace SocialMediaHub.Repositories
                     return memoryStream.ToArray();
                 }
             }
+        }
+
+        public async Task AddCommentToPost(int postId, int userId, string commentContent)
+        {
+            var post = await _context.Posts.FirstOrDefaultAsync(p => p.Id == postId);
+            if (post == null)
+            {
+                throw new ArgumentException($"Post with ID {postId} not found.");
+            }
+
+            var comment = new Comment
+            {
+                PostId = postId,
+                UserId = userId,
+                Content = commentContent,
+                CreationDate = DateTime.Now
+            };
+
+            _context.Comments.Add(comment);
+            await _context.SaveChangesAsync();
         }
     }
 }

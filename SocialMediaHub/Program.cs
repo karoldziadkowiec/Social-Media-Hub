@@ -21,7 +21,7 @@ namespace SocialMediaHub
             builder.Services.AddScoped<IGroupRepository, GroupRepository>();
             builder.Services.AddScoped<IEventRepository, EventRepository>();
             builder.Services.AddScoped<IPostRepository, PostRepository>();
-
+            builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

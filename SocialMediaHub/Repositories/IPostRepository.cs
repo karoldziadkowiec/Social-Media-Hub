@@ -10,5 +10,6 @@ namespace SocialMediaHub.Repositories
         Task EditPost(Post post);
         Task RemovePost(int postId);
         Task<byte[]> GetPostsCsvBytes();
+        Task AddCommentToPost(int postId, int userId, string commentContent);
     }
 }

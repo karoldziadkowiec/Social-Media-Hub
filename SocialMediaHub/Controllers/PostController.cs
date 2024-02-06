@@ -110,5 +110,23 @@ namespace SocialMediaHub.Controllers
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
+
+        [HttpPost("{postId}/comments")]
+        public async Task<IActionResult> AddCommentToPost(int postId, int userId, string content)
+        {
+            try
+            {
+                await _postRepository.AddCommentToPost(postId, userId, content);
+                return Ok("Comment added to post successfully.");
+            }
+            catch (ArgumentException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
     }
 }

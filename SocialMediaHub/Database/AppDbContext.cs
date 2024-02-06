@@ -11,5 +11,6 @@ namespace SocialMediaHub.Database
         public DbSet<Group> Groups { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<Post> Posts { get; set; }
+        public DbSet<Comment> Comments { get; set; }
     }
 }
