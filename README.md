@@ -79,6 +79,6 @@ Example endpoints tested by Swagger UI:
 
 ![20](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/20.png)
 
-Testing all repository methods:
+Unit testing all repository methods with xUnit:
 
 ![21](https://github.com/karoldziadkowiec/Social-Media-Hub/blob/master/photos/21.png)
