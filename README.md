@@ -6,7 +6,7 @@ The project is a REST controller for a social networking platform. It enables us
 - Framework: **ASP.NET Core Web API**
   - REST API
 - Backend: **C#**
-  - Multithreading (async/await)
+  - Asynchronous programming (async/await)
   - LINQ Queries
   - Repository pattern
   - ClosedXML library
